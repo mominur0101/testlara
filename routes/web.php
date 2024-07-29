@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
-
+/*
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
 
 Route::get('test', function () {
     return 'Hello';
@@ -14,7 +16,6 @@ Route::get('test', function () {
 
 
 
-/*
 Route::get('url/suburl', [StudentController::class, 'methodname'])->name('url/name');
 
 Route::get('view', [App\Http\Controllers\StudentController::class, 'viewmethod']);
@@ -60,8 +61,31 @@ Route::get('post/{id}', function($id){
 })->whereNumber('id');
 
 
+Route::get('post/{id}', [PostController::class, 'title']);
+
+
+
+Route::get('/post', [PostController::class, 'index']);
+Route::post('/post', [PostController::class, 'edit']);
+Route::put('/post/{id}', [PostController::class, 'edit']);
+Route::delete('/post/{id}', [PostController::class, 'delete']);
+Route::resource('/posts', PostController::class);
 
 */
 
 
-Route::get('post/{id}', [PostController::class, 'title']);
+
+//Route::get('/post', [PostController::class, 'posts']);
+//Route::resource('post', StudentController::class);
+
+//Route::get("site", [App\Http\Controllers\SiteController::class, "siteview"]);
+
+
+
+///Route::get('/post', [SiteController::class, 'siteview']);
+//Route::get('/view', [SiteController::class, 'view']);
+
+// web.php (routes file)
+Route::get('/', [SiteController::class, 'index'])->name('post');
+Route::get('/about', [SiteController::class, 'about'])->name('about');
+Route::get('/contact', [SiteController::class, 'contact'])->name('contact');

@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function methodname()
+    public function index()
     {
-        return "Return View Text";
+        return "Hello";
     }
 
-    public function viewmethod(){
-        return view('folder.testpage');
-    } 
+
+   public function create(){
+    return "Hello create";
+   }
+   public function edit(){
+    return "Hi, Edit Method";
+   }
 }
