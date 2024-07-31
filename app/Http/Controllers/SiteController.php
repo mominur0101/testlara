@@ -8,9 +8,14 @@ class SiteController extends Controller
 {
 
 
-    public function index(Request $request)
+    public function index()
     {
 
-        return $request->hasFile('key');
+        return view('home');
+
+    }
+
+    public function about(){
+        return view('about');
     }
 }

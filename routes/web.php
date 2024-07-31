@@ -86,6 +86,9 @@ Route::resource('/posts', PostController::class);
 //Route::get('/view', [SiteController::class, 'view']);
 
 // web.php (routes file)
-Route::get('/', [SiteController::class, 'index'])->name('post');
-Route::get('/about', [SiteController::class, 'about'])->name('about');
-Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
+//Route::get('/about', [SiteController::class, 'about'])->name('about');
+//Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
+//Route::apiResource('/post', SiteController::class)->except('show');
+
+Route::get('/', [SiteController::class , 'index'])->name('home');
+Route::get('/about', [SiteController::class , 'about'])->name('about');
