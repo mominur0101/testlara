@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Frontend\SiteController;
 /*
 Route::get('/', function () {
     return view('index');
@@ -90,5 +88,13 @@ Route::resource('/posts', PostController::class);
 //Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
 //Route::apiResource('/post', SiteController::class)->except('show');
 
-Route::get('/', [SiteController::class , 'index'])->name('home');
-Route::get('/about', [SiteController::class , 'about'])->name('about');
+Route::get('/', [SiteController::class, 'index'])->name('index');
+Route::get('/post', [SiteController::class, 'singlePost']);
+//User Login Register Route
+
+Route::prefix('/user')->name('user.')->group(function () {
+    Route::get('/login', [SiteController::class, 'showLoginForm'])->name('login-form');
+    Route::post('/login', [SiteController::class, 'login'])->name('login');
+    Route::get('/register', [SiteController::class, 'showRegisterForm'])->name('register-form');
+    Route::post('/register', [SiteController::class, 'registration'])->name('registration');
+});

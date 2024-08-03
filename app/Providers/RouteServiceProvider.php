@@ -26,6 +26,5 @@ class RouteServiceProvider extends ServiceProvider
     {
         //Some Rules
         Route::pattern('id', '[0-9]+');
-        Blade::component('abcd', OurComponent::class);
     }
 }

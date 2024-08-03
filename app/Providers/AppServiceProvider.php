@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-use App\View\Components\MyCard;
-use App\View\Components\OurComponent;
-use App\View\Components\TestComponent;
+
+use App\View\Components\SinglePost;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::component('xyz', TestComponent::class);
-        Blade::component('my-card', MyCard::class);
+        Blade::component('single-post', SinglePost::class);
     }
 }
