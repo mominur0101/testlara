@@ -7,12 +7,19 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('user.login-form') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('user.register-form') }}">Regiater</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Blog</a></li>
+
+                    @guest
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.login-form') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.register-form') }}">Regiater</a></li>
+                    @endguest
+                    @auth
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.logout') }}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Wellcome: {{ auth()->user()->name }}</a></li>
+                    @endauth
                 </ul>
             </div>
         </div>

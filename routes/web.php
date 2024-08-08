@@ -95,6 +95,7 @@ Route::get('/post', [SiteController::class, 'singlePost']);
 Route::prefix('/user')->name('user.')->group(function () {
     Route::get('/login', [SiteController::class, 'showLoginForm'])->name('login-form');
     Route::post('/login', [SiteController::class, 'login'])->name('login');
+    Route::get('/logout', [SiteController::class, 'logout'])->name('logout');
     Route::get('/register', [SiteController::class, 'showRegisterForm'])->name('register-form');
     Route::post('/register', [SiteController::class, 'registration'])->name('registration');
 });

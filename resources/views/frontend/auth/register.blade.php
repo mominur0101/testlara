@@ -21,7 +21,7 @@
                 </div>
             @endif --}}
             @if (session('message'))
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <div class="alert alert-{{ session('type') }} alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <strong>{{ session('message') }}</strong>
                 </div>
@@ -62,8 +62,8 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="confirm_password">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirm_password"
-                        name="password_confirmation" placeholder="Enter Confirm password.">
+                    <input type="password" class="form-control" id="confirm_password" name="password_confirmation"
+                        placeholder="Enter Confirm password.">
                 </div>
                 <div class="form-group mb-3">
                     <label for="photo">Prifile Photo</label>

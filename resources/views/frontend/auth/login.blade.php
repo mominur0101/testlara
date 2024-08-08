@@ -10,10 +10,10 @@
         </div>
         <div class="card-body">
 
-            @if (session('message'))
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            @if (session('errorinfo'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>{{ session('message') }}</strong>
+                    <strong>{{ session('errorinfo') }}</strong>
                 </div>
 
                 <script>

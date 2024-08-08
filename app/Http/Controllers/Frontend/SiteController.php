@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegistration;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -25,36 +28,75 @@ class SiteController extends Controller
         return view('frontend.auth.register');
     }
 
+
+
+
+
     public function registration(UserRegistration $request)
     {
-        $request->validate([
-            'name'      => 'required|string',
-            'email'     => 'required|email',
-            'password'  => 'required|min:6|confirmed',
-            'photo'     => 'required|image'
-        ]);
 
         $photo = $request->file('photo');
-        if ($photo->isValid()) {
+        if ($photo) {
             $file_name = date('s-i-h-M-Y-d-') . rand(11111, 99999) . "." . $photo->getClientOriginalExtension();
             $photo->storeAs('users', $file_name);
         }
 
-        session()->flash('message', 'User Registration Successful');
+        try {
+            User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => bcrypt($request->input('password')),
+            ]);
+
+            session()->flash('type', 'success');
+            session()->flash('message', 'User Registration Successful');
+        } catch (Exception $exception) {
+            session()->flash('type', 'danger');
+            session()->flash('message', 'User Registration Field!!!');
+        }
         return redirect()->back();
     }
+
+
 
     public function showLoginForm()
     {
         return view('frontend.auth.login');
     }
+
+    // public function login(Request $request)
+    // {
+    //     $userdata = $request->validate([
+    //         'email'     => 'required|email',
+    //         'password'  => 'required'
+    //     ]);
+
+    //     if (auth()->attempt($userdata)) {
+    //         return redirect('/');
+    //     } else {
+    //         session()->flash('erroninfo', 'Your Credentials Not Match!');
+    //         return redirect()->back();
+
+    //     };
+    // }
+
     public function login(Request $request)
     {
-        $request->validate([
-            'email'     => 'required|string',
-            'password'  => 'required|min:6'
-        ]);
+        $credentials = $request->only('email', 'password');
 
-        auth()->attempt(['email' => 'mominur0008@gmail.com', 'password' => '123456']);
+        if (auth()->attempt($credentials)) {
+            // Authentication passed
+            return redirect('/');
+        } else {
+            session()->flash('errorinfo', 'Your Credentials Not Match!');
+            // Authentication failed
+            return redirect()->back();
+        }
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect('/');
     }
 }
