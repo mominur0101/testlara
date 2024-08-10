@@ -18,7 +18,7 @@
                     @endguest
                     @auth
                         <li class="nav-item"><a class="nav-link" href="{{ route('user.logout') }}">Logout</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Wellcome: {{ auth()->user()->name }}</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-secondary" href="#">Wellcome to : {{ auth()->user()->name }}</a></li>
                     @endauth
                 </ul>
             </div>

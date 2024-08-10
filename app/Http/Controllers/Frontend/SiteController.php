@@ -86,7 +86,7 @@ class SiteController extends Controller
 
         if (auth()->attempt($credentials)) {
             // Authentication passed
-            return redirect('/');
+            return redirect()->route('admin.dashboard');
         } else {
             session()->flash('errorinfo', 'Your Credentials Not Match!');
             // Authentication failed
